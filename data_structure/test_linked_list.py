@@ -107,7 +107,7 @@ def test_remove_updates_tail_correctly(initial_values, val_to_remove):
 
     ll.remove(val=val_to_remove)
     ll.append(999)
-    tail  = ll.get(len(ll)-1)
+    tail = ll.get(len(ll) - 1)
 
     assert walk_values(ll)[-1] == 999
     assert tail is not None
@@ -127,12 +127,13 @@ def test_length(initial_values, expected_return):
     ll = LinkedList()
     for val in initial_values:
         ll.append(val)
-    
+
     assert len(ll) == expected_return
 
     if len(initial_values) == 3:
         ll.remove(2)
         assert len(ll) == 2
+
 
 @pytest.mark.parametrize(
     "initial_values, index, expected_return",
@@ -154,17 +155,21 @@ def test_get(initial_values, index, expected_return):
     else:
         assert node == expected_return
 
+
 @pytest.mark.parametrize(
     "initial_values, target_val, new_val, expected_return, expected_order",
     [
-        ([2, 5, 8], 5 , 7, True, [2, 5, 7, 8]),
-        ([2, 5, 8], 8 , 1, True, [2, 5, 8, 1]),
+        ([2, 5, 8], 5, 7, True, [2, 5, 7, 8]),
+        ([2, 5, 8], 8, 1, True, [2, 5, 8, 1]),
     ],
 )
-def test_inser_after(initial_values, target_val, new_val, expected_return, expected_order):
+def test_inser_after(
+    initial_values, target_val, new_val, expected_return, expected_order
+):
     ll = LinkedList()
     for val in initial_values:
         ll.append(val)
 
     assert ll.insert_after(target_val, new_val) == expected_return
     assert walk_values(ll) == expected_order
+    assert len(ll) == len(initial_values) + 1

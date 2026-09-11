@@ -92,6 +92,7 @@ class LinkedList:
                 temp = current.next
                 current.next = node
                 node.next = temp
+                self.__length += 1
                 return True
             current = current.next
         return False
