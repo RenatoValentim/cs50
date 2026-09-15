@@ -100,13 +100,11 @@ class LinkedList:
     def reverse(self) -> None:
         previous: _Node | None = None
         current: _Node | None = self.__head
-
         while current is not None:
             temp = current.next
             current.next = previous
             previous = current
             current = temp
-
         temp = self.__head
         self.__head = self.__tail
         self.__tail = temp
