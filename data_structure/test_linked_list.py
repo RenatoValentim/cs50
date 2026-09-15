@@ -173,3 +173,25 @@ def test_inser_after(
     assert ll.insert_after(target_val, new_val) == expected_return
     assert walk_values(ll) == expected_order
     assert len(ll) == len(initial_values) + 1
+
+@pytest.mark.parametrize(
+    "values_to_append, expected_order",
+    [
+        ([1], [1]),
+        ([1, 2, 3], [3, 2, 1]),
+        ([5, 5, 5], [5, 5, 5]),
+        ([], []),
+    ],
+)
+def test_reverse(values_to_append, expected_order):
+    ll = LinkedList()
+    for val in values_to_append:
+        ll.append(val)
+
+    ll.reverse()
+
+    assert walk_values(ll) == expected_order
+
+    ll.append(8)
+
+    assert ll.get(len(ll)-1).val == 8
