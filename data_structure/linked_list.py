@@ -52,11 +52,13 @@ class LinkedList:
             return False
         if self.__head.val == val:
             if self.__head is self.__tail:
-                self.__tail = self.__head.next
+                self.__head = None
+                self.__tail = None
+                self.__length = 0
+                return True
             self.__head = self.__head.next
             self.__length -= 1
             return True
-        previous: _Node | None = None
         current: _Node | None = self.__head
         while current.next is not None:
             previous = current
@@ -64,6 +66,9 @@ class LinkedList:
             if current.val == val:
                 if current is self.__tail:
                     self.__tail = previous
+                    self.__tail.next = None
+                    self.__length -= 1
+                    return True
                 previous.next = current.next
                 self.__length -= 1
                 return True
