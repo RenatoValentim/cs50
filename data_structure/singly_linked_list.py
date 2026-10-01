@@ -2,7 +2,7 @@ from typing import Any, Generator
 
 
 class _Node:
-    def __init__(self, val: Any, next: _Node | None = None) -> None:
+    def __init__(self, val: Any, next: _Node | None) -> None:
         self.val: Any = val
         self.next: _Node | None = next
 
@@ -17,7 +17,7 @@ class LinkedList:
         self.__length: int = 0
 
     def prepend(self, val: Any) -> None:
-        node = _Node(val)
+        node = _Node(val, None)
         if self.__head is None:
             self.__head = node
             self.__tail = node
@@ -29,7 +29,7 @@ class LinkedList:
         self.__length += 1
 
     def append(self, val: Any) -> None:
-        node = _Node(val)
+        node = _Node(val, None)
         if self.__head is None:
             self.__head = node
             self.__tail = node
@@ -90,7 +90,7 @@ class LinkedList:
         if target_val == self.__tail.val:
             self.append(new_val)
             return True
-        node = _Node(val=new_val)
+        node = _Node(new_val, None)
         current = self.__head
         while current is not None:
             if current.val == target_val:

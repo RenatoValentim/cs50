@@ -1,12 +1,7 @@
 import pytest
-from data_structure.linked_list import LinkedList
 
-
-def walk_values(ll: LinkedList) -> list:
-    vals = []
-    for val in ll:
-        vals.append(val)
-    return vals
+from data_structure.singly_linked_list import LinkedList
+from helper import walk_values
 
 
 @pytest.mark.parametrize(
